@@ -1,3 +1,6 @@
+
+#include "APOS.h"
+
 extern void FillTaskA();
 extern void FillTaskB();
 extern void FillTaskC();
@@ -5,54 +8,38 @@ extern void FillTaskC();
 void TaskA(void) 
 { 
 	FillTaskA(); 
-	/*
-	
-	
-	
-	
 	while (1) 
 	{ 
-		Debug_TaskOn_A(); 
+		//Debug_TaskOn_A(); 
 		// enter Code 
-		Debug_TaskOff_A(); 
-		APOS_Scheduler(); 
+		//Debug_TaskOff_A();		
+		APOS_Scheduler(); //context
 	} 
-	*/
 }
 
 void TaskB(void) 
 { 
 	FillTaskB(); 
-	/*
-	
-	
-	
-	
 	while (1) 
 	{ 
-		Debug_TaskOn_B(); 
+		//Debug_TaskOn_B(); 
 		// enter Code 
-		Debug_TaskOff_B(); 
+		//Debug_TaskOff_B(); 
 		APOS_Scheduler(); 
 	} 
-	*/
 }
 
 
-void TaskC (void) 
+void TaskC(void) 
 { 
 	FillTaskC(); 
-	/*
-	
-	
-	
 	
 	while (1) 
 	{ 
-		Debug_TaskOn_C(); 
+		//Debug_TaskOn_C(); 
 		// enter Code 
-		Debug_TaskOff_C(); 
+		//Debug_TaskOff_C(); 
 		APOS_Scheduler(); 
 	} 
-	*/
+
 }

@@ -1,4 +1,5 @@
-
+	IMPORT current_TCB
+		
 	PRESERVE8
     THUMB
         
@@ -9,13 +10,8 @@
 	EXPORT FillTaskB
 	EXPORT FillTaskC
 	
-  
-  
 OSStart
-    MOVS    R0,#0                                              ; Set the PSP to 0 for initial context switch call
-    MSR     PSP,R0
-
-
+    MOVS    R0,#0   
 
 FillTaskA
     MOVS R0,#0xA8
@@ -78,3 +74,59 @@ FillTaskC
 	MOVS R5, #0xC5
 	MOVS R6, #0xC6
 	MOVS R7, #0xC7
+
+
+;not finished, still working
+
+PendSVHandler PROC
+	EXPORT PendSVHandler
+
+;turn off all interrupt
+	CPSID I
+	
+    MRS R0,PSP
+	CMP R0,#0
+	BEQ RestoreContext
+
+SaveContext
+	stmia R0!, {R4-R7}					
+	mov R4, R8							 
+	mov R5, R9							
+	mov R6, R10							
+	mov R7, R11							
+	stmia R0!, {R4-R7}  
+
+JumpToNextTCB
+	mov R0, LR
+    PUSH {R0}
+    BL xxxxxx
+    POP {R0}
+	mov LR,R0
+
+RestoreContext
+	LDR R0, current_TCB
+    LDR R0, [R0]
+	LDR R0, [R0]
+	ldmia R0!,{R4-R7}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

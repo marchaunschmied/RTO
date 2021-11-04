@@ -2,14 +2,17 @@
 #define APOS_H
 
 #include "Services/StdDef.h"
+#include <stdint.h>
+#include "stm32f0xx.h"
 
 
+#define MAX_TASK_NUM 5
+#define TASK_STACK_SIZE 32
 
-#define TASK_STACK_SIZE 1024
 
 typedef struct OS_TCB
 {
-  uint32_t *stack_address;
+  uint32_t *stack_addr;
 	
 }APOS_TCB_STRUCT;
 
@@ -31,8 +34,8 @@ void APOS_TASK_Create(APOS_TCB_STRUCT* 	pTask, // TaskControlBlock
 					  
 void APOS_Start(void); 
 
+void PendSVInit(void);
 
-
-
+void APOS_Scheduler(void);
 
 #endif
